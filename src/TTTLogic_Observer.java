@@ -13,7 +13,7 @@ public class TTTLogic_Observer implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Updated");
-        System.out.println(arg);
-        
+//        System.out.println(arg);
+
     }
 }
