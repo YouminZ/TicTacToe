@@ -1,18 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class GameBoard {
+public class GameBoard{
+    TTTLogic_Observable game;
     private JPanel topPanel = new JPanel();
     private JPanel boardPanel = new JPanel();
     private JPanel bottomPanel = new JPanel();
     private Label turnLabel = new Label();
     private Button startButton = new Button();
-    private Button[] tttButton = new Button[9];
+
+    public GameBoard(TTTLogic_Observable game){
+        this.game = game;
+    }
 
     public void RenderGameBoard(){
-//        int current = 0;
         JFrame frame = new JFrame();
         frame.setSize(300,470);
 
@@ -20,8 +24,6 @@ public class GameBoard {
 
         frame.add(layerPane, FlowLayout.LEFT);
         layerPane.setBounds(0,0,300, 470);
-
-        TTTLogic game = new TTTLogic();
 
         // Add top panel and its components
         topPanel.setPreferredSize(new Dimension(300, 90));
@@ -36,13 +38,16 @@ public class GameBoard {
         boardPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         boardPanel.setBounds(0, 90, 300, 250);
 
+        ActionListener listener = new tttActionListener(game);
+
         for(int i = 0; i < 9; i++) {
-            tttButton[i] = new Button("-");
-            tttButton[i].setPreferredSize(new Dimension(70,70));
-            boardPanel.add(tttButton[i]);
+            game.tttButton[i] = new Button("-");
+            game.tttButton[i].setPreferredSize(new Dimension(70,70));
+            game.tttButton[i].setActionCommand(Integer.toString(i));
+            game.tttButton[i].addActionListener(listener);
+            boardPanel.add(game.tttButton[i]);
         }
 
-        System.out.println(tttButton[0]);
         boardPanel.setBackground(Color.blue);
 
         //Add bottom Layout
@@ -57,20 +62,16 @@ public class GameBoard {
             }
 
             @Override
-            public void mousePressed(MouseEvent e) {
-            }
+            public void mousePressed(MouseEvent e) { }
 
             @Override
-            public void mouseReleased(MouseEvent e) {
-            }
+            public void mouseReleased(MouseEvent e) { }
 
             @Override
-            public void mouseEntered(MouseEvent e) {
-            }
+            public void mouseEntered(MouseEvent e) { }
 
             @Override
-            public void mouseExited(MouseEvent e) {
-            }
+            public void mouseExited(MouseEvent e) { }
         });
         bottomPanel.add(startButton);
         bottomPanel.setBackground(Color.yellow);

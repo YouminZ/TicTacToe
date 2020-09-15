@@ -1,12 +1,8 @@
-import javax.swing.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.*;
-
 public class TicTacToe{
     public static void main(String[] args){
-        GameBoard newGame = new GameBoard();
-        newGame.RenderGameBoard();
+        TTTLogic_Observable observable = new TTTLogic_Observable();
+        TTTLogic_Observer observer = new TTTLogic_Observer(observable);
+
+        observable.addObserver(observer);
     }
 }
-
