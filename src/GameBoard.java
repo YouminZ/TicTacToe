@@ -9,7 +9,6 @@ public class GameBoard{
     private JPanel topPanel = new JPanel();
     private JPanel boardPanel = new JPanel();
     private JPanel bottomPanel = new JPanel();
-    private Label turnLabel = new Label();
     private Button startButton = new Button();
 
     public GameBoard(TTTLogic_Observable game){
@@ -29,8 +28,8 @@ public class GameBoard{
         topPanel.setPreferredSize(new Dimension(300, 90));
         topPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
         topPanel.setBounds(0,0,300, 90);
-        topPanel.add(turnLabel);
-        turnLabel.setText("Game is not started yet!!!");
+        topPanel.add(GameProperties.turnLabel);
+        GameProperties.turnLabel.setText("Game is not started yet!!!");
         topPanel.setBackground(Color.green);
 
         // Add Center Board
@@ -41,11 +40,11 @@ public class GameBoard{
         ActionListener listener = new tttActionListener(game);
 
         for(int i = 0; i < 9; i++) {
-            game.tttButton[i] = new Button("-");
-            game.tttButton[i].setPreferredSize(new Dimension(70,70));
-            game.tttButton[i].setActionCommand(Integer.toString(i));
-            game.tttButton[i].addActionListener(listener);
-            boardPanel.add(game.tttButton[i]);
+            GameProperties.tttButton[i] = new Button("-");
+            GameProperties.tttButton[i].setPreferredSize(new Dimension(70,70));
+            GameProperties.tttButton[i].setActionCommand(Integer.toString(i));
+            GameProperties.tttButton[i].addActionListener(listener);
+            boardPanel.add(GameProperties.tttButton[i]);
         }
 
         boardPanel.setBackground(Color.blue);
@@ -58,7 +57,7 @@ public class GameBoard{
         startButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                game.StartGame(turnLabel);
+                game.StartGame();
             }
 
             @Override

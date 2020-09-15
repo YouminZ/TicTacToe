@@ -12,8 +12,12 @@ public class TTTLogic_Observer implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Updated");
-//        System.out.println(arg);
+        GameProperties.turnLabel.setText(ov.getCurrentTurn());
 
+        for(int i = 0; i < GameProperties.tttButton.length; i++){
+            GameProperties.tttButton[i].setLabel(ov.getGameState()[i]);
+        }
+
+        System.out.println("Updated");
     }
 }
