@@ -18,6 +18,10 @@ public class TTTLogic_Observer implements Observer {
             GameProperties.tttButton[i].setLabel(ov.getGameState()[i]);
         }
 
-        System.out.println("Updated");
+        if(ov.getWinner() != null && (ov.getWinner().equals("O") || ov.getWinner().equals("X"))){
+            GameProperties.turnLabel.setText("The winner is player: " + ov.getWinner());
+        }else if(ov.getWinner() != null && ov.getWinner().equals("tie")){
+            GameProperties.turnLabel.setText("Tie Game!");
+        }
     }
 }

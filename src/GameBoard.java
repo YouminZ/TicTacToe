@@ -30,7 +30,8 @@ public class GameBoard{
         topPanel.setBounds(0,0,300, 90);
         topPanel.add(GameProperties.turnLabel);
         GameProperties.turnLabel.setText("Game is not started yet!!!");
-        topPanel.setBackground(Color.green);
+        GameProperties.turnLabel.setForeground(Color.lightGray);
+        topPanel.setBackground(Color.darkGray);
 
         // Add Center Board
         boardPanel.setPreferredSize(new Dimension(300, 250));
@@ -47,7 +48,7 @@ public class GameBoard{
             boardPanel.add(GameProperties.tttButton[i]);
         }
 
-        boardPanel.setBackground(Color.blue);
+        boardPanel.setBackground(Color.gray);
 
         //Add bottom Layout
         bottomPanel.setPreferredSize(new Dimension(300, 90));
@@ -73,7 +74,7 @@ public class GameBoard{
             public void mouseExited(MouseEvent e) { }
         });
         bottomPanel.add(startButton);
-        bottomPanel.setBackground(Color.yellow);
+        bottomPanel.setBackground(Color.darkGray);
 
         layerPane.add(topPanel);
         layerPane.add(boardPanel);
