@@ -23,16 +23,15 @@ public class TTTLogic_Observable extends Observable {
     public void tttButtonClick(String index) {
         if (gameStarted) {
             int i = Integer.parseInt(index);
-            if (gameState[i] == "-") {
+            if (gameState[i].equals("-")) {
                 if (currentTurn.equals("O's turn")) {
                     setCurrentTurn("X's turn");
                     setGameState(i, "O");
-                    checkForWinner();
                 } else {
                     setCurrentTurn("O's turn");
                     setGameState(i, "X");
-                    checkForWinner();
                 }
+                checkForWinner();
                 setChanged();
                 notifyObservers();
             }
